@@ -49,7 +49,7 @@ var objFile=null;	// ez a fájl, ennek elérése hardcodeolva, u.abban a mappáb
 	}
 }*/
 
-function readfile(){	// ez kell, ez olvassa be a fájlt
+function readfile(file){	// ez kell, ez olvassa be a fájlt
 	/*return new Promise((resolve, reject) => {
 		var fr = new FileReader();  
 		fr.onload = () => {
@@ -57,26 +57,26 @@ function readfile(){	// ez kell, ez olvassa be a fájlt
 		};
 		fr.readAsArrayBuffer(file);
 	});*/
-	fetch('text.txt.enc')
-  		.then(response => {
-    			if (!response.ok) {
-      			throw new Error(`HTTP error! Status: ${response.status}`);
-    		}
-    	return response.arrayBuffer();
-  	})
-  	.then(buffer => {
-    		const uint8Array = new Uint8Array(buffer);
-    		console.log(uint8Array); // Use this for your app logic
+	fetch('./text.txt.enc')
+	.then(response => {
+    if (!response.ok) {
+		throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.arrayBuffer();
+	})
+	/*.then(buffer => {
+		const uint8Array = new Uint8Array(buffer);
+		console.log(uint8Array); // Use this for your app logic
 		objFile=uint8Array;
-  	})
-  	.catch(err => {
-    		console.error('Failed to load file:', err);
-  	});
+	})*/
+	.catch(err => {
+		console.error('Failed to load file:', err);
+	});
 }
 
 async function decryptfile() {	// ez kell, ez a decryptelés
 	btnDecrypt.disabled=true;
-	var cipherbytes=await readfile()
+	var cipherbytes=await readfile(objFile)
 	.catch(function(err){
 		console.error(err);
 	});	
