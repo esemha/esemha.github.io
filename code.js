@@ -81,10 +81,10 @@ function readFileFromURL(url) {
 
 async function decryptfile() {	// ez kell, ez a decryptelés
 	btnDecrypt.disabled=true;
-	var cipherbytes=await readFileFromURL('text.txt.enc')
-	.catch(function(err){
-		console.error(err);
-	});	
+	var cipherbytes=await readFileFromURL('text.txt.enc');
+	//.catch(function(err){
+	//	console.error(err);
+	//});	
 	var cipherbytes=new Uint8Array(cipherbytes);
 
 	var pbkdf2iterations=10000;
