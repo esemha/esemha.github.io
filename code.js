@@ -1,4 +1,3 @@
-var mode=null;	// encript vagy decript mód, nekünk ez mindig decrypt lessz, tehát minden encript kódot törölhetünk
 var objFile=null;	// ez a fájl, ennek elérése hardcodeolva, u.abban a mappában mint az össze többi fájl
 
 //drag and drop functions:
@@ -130,12 +129,31 @@ async function decryptfile() {	// ez kell, ez a decryptelés
 	plaintextbytes=new Uint8Array(plaintextbytes);
 
 	// letöltés nem kell, helyette az oldalon megjelenítjük
-	var blob=new Blob([plaintextbytes], {type: 'application/download'});
+	/*var blob=new Blob([plaintextbytes], {type: 'application/download'});
 	var blobUrl=URL.createObjectURL(blob);
 	aDecsavefile.href=blobUrl;
 	aDecsavefile.download=objFile.name + '.dec';
+ 	*/
 
- 	spnDecstatus.classList.add("greenspan");
+	// Assuming plaintext is text, convert to string (if it's text content)
+	const decoder = new TextDecoder();  // Use TextDecoder to convert bytes to string
+	const decryptedText = decoder.decode(plaintextbytes);
+	
+	console.log(decryptedText);  // Log the decrypted text to the console
+	
+	// Update the UI with the decrypted text
+	const outputElement = document.getElementById('decryptedTextOutput');  // Target an existing DOM element
+	outputElement.textContent = decryptedText;  // Or use innerHTML if you want to render HTML
+	
+	// Show the status message
+	spnDecstatus.classList.add("greenspan");
+	spnDecstatus.innerHTML = '<p>File decrypted and displayed.</p>';
+	
+	// Optionally, hide any download links if they are no longer needed
+	aDecsavefile.hidden = true;
+
+
+ 	/*spnDecstatus.classList.add("greenspan");
 	spnDecstatus.innerHTML='<p>File decrypted.</p>';
-	aDecsavefile.hidden=false;
+	aDecsavefile.hidden=false;*/
 }
