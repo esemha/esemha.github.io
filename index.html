@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="utf-8">
 		<title>SMH</title>
-		<link rel="icon" href="./favicon.ico" type="image/x-icon">
-		<link rel="stylesheet" href="./style.css">
-		<script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-		<object data="https://docs.google.com/document/d/1K3jC3f9GU5XLQkvzQMV5XxK46j_4p7Zm/pub?embedded=true" width="600" height="400">
-			<embed src="https://docs.google.com/document/d/1K3jC3f9GU5XLQkvzQMV5XxK46j_4p7Zm/pub?embedded=true" width="600" height="400"> </embed>
-			Error: Embedded data could not be displayed.
-		</object>
-		<iframe src="https://docs.google.com/document/d/158ZBq4O3_B8w-7Vjr2JPJgL5bd6wTwcf/preview"></iframe>
-		<iframe src="https://drive.google.com/file/d/1DtRAfZeyMS8hwavpvsrtDrML_B__Xljt/pub?embedded=true"></iframe>
 	</head>
+	<style>
+		body {
+	  		font-family: 'Helvetica', 'Arial', 'sans-serif'; 
+			color: black;
+			font-size: 11pt;		
+		}
+
+		a, a:link, a:visited, a:active {
+			color: blue;
+			text-decoration: underline;
+		}
+
+		a:hover {
+			cursor:pointer;
+			color: red;
+		}
+
+		.dropzone {
+			border: 10px dashed gray;
+			width: 20%;
+			padding: 2% 2% 5% 2%;
+			text-align: center;
+			margin: 5px 0 5px 0;
+		}
+
+		.divTable{
+			display: table;
+		}
+		
+
+		.greenspan {
+			color: green;	  
+		}
+
+		.redspan {
+			color: red;	  
+		}
+	</style>	
 	<body>
-		<div class="main-content">
-			<div class="container">
-				<div>
-					<div class="header">
-						<h3>2025.07.08. kedd 15:41</h3>
-						<h1>Title</h1>
-						<!--<img src="image.png">-->
-					</div>
-					<div class="text">
-						<p>
-							For small projects or personal websites, Firebase, Auth0, Supabase, and Amazon Cognito provide generous free tiers with a variety of authentication options. However, once you exceed the free usage limits, you'll have to evaluate whether upgrading to a paid plan is worth it. If you’re building a small project or a hobby site, the free plans will likely be sufficient.
-						</p>
+		<div class="container" id=divDecryptfile>
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><input id=txtDecpassphrase type=password size=30 value=''></div>
 					</div>
 				</div>
 			</div>
+			<div class="divTable">
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell"><button id=btnDecrypt onclick=javascript:decryptfile(); >Decrypt File</button></div>
+						<div class="divTableCell"><span id=spnDecstatus></span></div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<a id=aDecsavefile hidden><button>Save Decrypted File</button></a>
+			</div>
 		</div>
+		<script type="text/javascript" src="./code.js" ></script>
 	</body>
 </html>
+
+
