@@ -84,7 +84,7 @@ async function decryptfile() {	// ez kell, ez a decryptelés
 	var cipherbytes=await readFileFromURL('text.txt.enc');
 	//.catch(function(err){
 	//	console.error(err);
-	//});	
+	//});
 	var cipherbytes=new Uint8Array(cipherbytes);
 
 	var pbkdf2iterations=10000;
