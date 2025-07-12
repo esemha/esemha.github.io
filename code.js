@@ -81,7 +81,7 @@ function readFileFromURL(url) {
 
 async function decryptfile() {	// ez kell, ez a decryptelés
 	btnDecrypt.disabled=true;
-	var cipherbytes=await readFileFromURL('text.txt.enc');
+	var cipherbytes=await readFileFromURL('text.txt.enc')
 	.catch(function(err){
 		console.error(err);
 	});	
