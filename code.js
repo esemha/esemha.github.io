@@ -67,6 +67,7 @@ function readfile(){	// ez kell, ez olvassa be a fájlt
   	.then(buffer => {
     		const uint8Array = new Uint8Array(buffer);
     		console.log(uint8Array); // Use this for your app logic
+		objFile=uint8Array;
   	})
   	.catch(err => {
     		console.error('Failed to load file:', err);
