@@ -49,34 +49,33 @@ var objFile=null;	// ez a fájl, ennek elérése hardcodeolva, u.abban a mappáb
 	}
 }*/
 
-function readfile(file){	// ez kell, ez olvassa be a fájlt
-	/*return new Promise((resolve, reject) => {
-		var fr = new FileReader();  
-		fr.onload = () => {
-			resolve(fr.result )
-		};
-		fr.readAsArrayBuffer(file);
-	});*/
-	fetch('./text.txt.enc')
-	.then(response => {
-    if (!response.ok) {
-		throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.arrayBuffer();
-	})
-	/*.then(buffer => {
-		const uint8Array = new Uint8Array(buffer);
-		console.log(uint8Array); // Use this for your app logic
-		objFile=uint8Array;
-	})*/
-	.catch(err => {
-		console.error('Failed to load file:', err);
-	});
+/*function readfile(file){	// ez kell, ez olvassa be a fájlt
+	//return new Promise((resolve, reject) => {
+	//	var fr = new FileReader();  
+	//	fr.onload = () => {
+	//		resolve(fr.result )
+	//	};
+	//	fr.readAsArrayBuffer(file);
+	//});
+}*/
+
+async function loadEncryptedFile() {
+	try {
+		 const response = await fetch('text.txt.enc');  // Path to your encrypted file
+	if (!response.ok) {
+		throw new Error(`Failed to fetch file: ${response.status}`);
+	}
+	const encryptedBuffer = await response.arrayBuffer();  // Read the file as ArrayBuffer
+	console.log('Encrypted Buffer:', encryptedBuffer);
+	objFile=encryptedBuffer;
+	} catch (error) {
+		console.error('Error loading the encrypted file:', error);
+	}
 }
 
 async function decryptfile() {	// ez kell, ez a decryptelés
 	btnDecrypt.disabled=true;
-	var cipherbytes=await readfile(objFile)
+	var cipherbytes=await loadEncryptedFile()
 	.catch(function(err){
 		console.error(err);
 	});	
