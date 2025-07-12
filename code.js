@@ -135,22 +135,7 @@ async function decryptfile() {	// ez kell, ez a decryptelés
 	aDecsavefile.download=objFile.name + '.dec';
  	*/
 
-	// Assuming plaintext is text, convert to string (if it's text content)
-	const decoder = new TextDecoder();  // Use TextDecoder to convert bytes to string
-	const decryptedText = decoder.decode(plaintextbytes);
 	
-	console.log(decryptedText);  // Log the decrypted text to the console
-	
-	// Update the UI with the decrypted text
-	const outputElement = document.getElementById('decryptedTextOutput');  // Target an existing DOM element
-	outputElement.textContent = decryptedText;  // Or use innerHTML if you want to render HTML
-	
-	// Show the status message
-	spnDecstatus.classList.add("greenspan");
-	spnDecstatus.innerHTML = '<p>File decrypted and displayed.</p>';
-	
-	// Optionally, hide any download links if they are no longer needed
-	aDecsavefile.hidden = true;
 
 
  	/*spnDecstatus.classList.add("greenspan");
