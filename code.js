@@ -59,26 +59,29 @@ var objFile=null;	// ez a fájl, ennek elérése hardcodeolva, u.abban a mappáb
 	//});
 }*/
 
-function loadEncryptedFile() {
-	return new Promise((resolve, reject) => {
-		try {
-			const response = await fetch('text.txt.enc');  // Path to your encrypted file
-			if (!response.ok) {
-				throw new Error(`Failed to fetch file: ${response.status}`);
-			}
-			const encryptedBuffer = await response.arrayBuffer();  // Read the file as ArrayBuffer
-			console.log('Encrypted Buffer:', encryptedBuffer);
-			objFile=encryptedBuffer;
-		} catch (error) {
-			console.error('Error loading the encrypted file:', error);
-		}
-	});
+function readFileFromURL(url) {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          reject(`Failed to fetch file: ${response.status}`);
+        } else {
+          return response.arrayBuffer();
+        }
+      })
+      .then(buffer => {
+        resolve(buffer);  // resolve with ArrayBuffer
+      })
+      .catch(error => {
+        reject(error);  // handle error
+      });
+  });
 }
+
 
 async function decryptfile() {	// ez kell, ez a decryptelés
 	btnDecrypt.disabled=true;
-	await loadEncryptedFile();
-	var cipherbytes=objFile;
+	var cipherbytes=await readFileFromURL('text.txt.enc');
 	.catch(function(err){
 		console.error(err);
 	});	
